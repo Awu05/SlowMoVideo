@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D76E7F776516E0B9DE79A1CC /* Pods_SlowMoVideoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABEC7A8E1DEF1CA8BA8B924 /* Pods_SlowMoVideoApp.framework */; };
 		E840A7071E257BE100701B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7061E257BE100701B3D /* AppDelegate.swift */; };
 		E840A7091E257BE100701B3D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7081E257BE100701B3D /* FirstViewController.swift */; };
 		E840A70B1E257BE100701B3D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A70A1E257BE100701B3D /* SecondViewController.swift */; };
 		E840A70E1E257BE100701B3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E840A70C1E257BE100701B3D /* Main.storyboard */; };
 		E840A7101E257BE100701B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E840A70F1E257BE100701B3D /* Assets.xcassets */; };
 		E840A7131E257BE100701B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E840A7111E257BE100701B3D /* LaunchScreen.storyboard */; };
+		E840A71B1E2580A400701B3D /* UploadVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A71A1E2580A400701B3D /* UploadVideoViewController.swift */; };
+		E840A71F1E25835900701B3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E840A71E1E25835900701B3D /* GoogleService-Info.plist */; };
+		E840A7211E26E08200701B3D /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7201E26E08200701B3D /* DataAccessObject.swift */; };
+		E840A7231E26E2C500701B3D /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7221E26E2C500701B3D /* Photo.swift */; };
+		E840A7251E28293700701B3D /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7241E28293700701B3D /* PhotoCollectionViewCell.swift */; };
+		E840A7271E2844C900701B3D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7261E2844C900701B3D /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6ABEC7A8E1DEF1CA8BA8B924 /* Pods_SlowMoVideoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlowMoVideoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E40E966D76A66EEC6182612 /* Pods-SlowMoVideoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlowMoVideoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlowMoVideoApp/Pods-SlowMoVideoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E840A7031E257BE100701B3D /* SlowMoVideoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlowMoVideoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E840A7061E257BE100701B3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E840A7081E257BE100701B3D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +33,13 @@
 		E840A70F1E257BE100701B3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E840A7121E257BE100701B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E840A7141E257BE100701B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E840A71A1E2580A400701B3D /* UploadVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadVideoViewController.swift; sourceTree = "<group>"; };
+		E840A71E1E25835900701B3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E840A7201E26E08200701B3D /* DataAccessObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
+		E840A7221E26E2C500701B3D /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		E840A7241E28293700701B3D /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		E840A7261E2844C900701B3D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FB00192F0C08EA0A9AD28A0F /* Pods-SlowMoVideoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlowMoVideoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlowMoVideoApp/Pods-SlowMoVideoApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +47,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D76E7F776516E0B9DE79A1CC /* Pods_SlowMoVideoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3741FB28905316CF40F3EC65 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E40E966D76A66EEC6182612 /* Pods-SlowMoVideoApp.debug.xcconfig */,
+				FB00192F0C08EA0A9AD28A0F /* Pods-SlowMoVideoApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BD31AC28E7A9CDFBFF1BCEE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6ABEC7A8E1DEF1CA8BA8B924 /* Pods_SlowMoVideoApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E840A6FA1E257BE100701B3D = {
 			isa = PBXGroup;
 			children = (
 				E840A7051E257BE100701B3D /* SlowMoVideoApp */,
 				E840A7041E257BE100701B3D /* Products */,
+				3741FB28905316CF40F3EC65 /* Pods */,
+				BD31AC28E7A9CDFBFF1BCEE5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,10 +95,16 @@
 				E840A7061E257BE100701B3D /* AppDelegate.swift */,
 				E840A7081E257BE100701B3D /* FirstViewController.swift */,
 				E840A70A1E257BE100701B3D /* SecondViewController.swift */,
+				E840A71A1E2580A400701B3D /* UploadVideoViewController.swift */,
+				E840A7261E2844C900701B3D /* DetailViewController.swift */,
+				E840A7201E26E08200701B3D /* DataAccessObject.swift */,
+				E840A7221E26E2C500701B3D /* Photo.swift */,
 				E840A70C1E257BE100701B3D /* Main.storyboard */,
+				E840A7241E28293700701B3D /* PhotoCollectionViewCell.swift */,
 				E840A70F1E257BE100701B3D /* Assets.xcassets */,
 				E840A7111E257BE100701B3D /* LaunchScreen.storyboard */,
 				E840A7141E257BE100701B3D /* Info.plist */,
+				E840A71E1E25835900701B3D /* GoogleService-Info.plist */,
 			);
 			path = SlowMoVideoApp;
 			sourceTree = "<group>";
@@ -74,9 +116,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E840A7171E257BE100701B3D /* Build configuration list for PBXNativeTarget "SlowMoVideoApp" */;
 			buildPhases = (
+				413E0E1B8803746518E50AA4 /* [CP] Check Pods Manifest.lock */,
 				E840A6FF1E257BE100701B3D /* Sources */,
 				E840A7001E257BE100701B3D /* Frameworks */,
 				E840A7011E257BE100701B3D /* Resources */,
+				D5FB98C3579E829F9A8B8672 /* [CP] Embed Pods Frameworks */,
+				1AD536F597080E12D2443610 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -99,6 +144,7 @@
 				TargetAttributes = {
 					E840A7021E257BE100701B3D = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = R52DFB482J;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -127,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E840A7131E257BE100701B3D /* LaunchScreen.storyboard in Resources */,
+				E840A71F1E25835900701B3D /* GoogleService-Info.plist in Resources */,
 				E840A7101E257BE100701B3D /* Assets.xcassets in Resources */,
 				E840A70E1E257BE100701B3D /* Main.storyboard in Resources */,
 			);
@@ -134,14 +181,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1AD536F597080E12D2443610 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlowMoVideoApp/Pods-SlowMoVideoApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		413E0E1B8803746518E50AA4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D5FB98C3579E829F9A8B8672 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlowMoVideoApp/Pods-SlowMoVideoApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E840A6FF1E257BE100701B3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E840A7231E26E2C500701B3D /* Photo.swift in Sources */,
 				E840A70B1E257BE100701B3D /* SecondViewController.swift in Sources */,
+				E840A71B1E2580A400701B3D /* UploadVideoViewController.swift in Sources */,
 				E840A7071E257BE100701B3D /* AppDelegate.swift in Sources */,
+				E840A7251E28293700701B3D /* PhotoCollectionViewCell.swift in Sources */,
 				E840A7091E257BE100701B3D /* FirstViewController.swift in Sources */,
+				E840A7211E26E08200701B3D /* DataAccessObject.swift in Sources */,
+				E840A7271E2844C900701B3D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,9 +362,12 @@
 		};
 		E840A7181E257BE100701B3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E40E966D76A66EEC6182612 /* Pods-SlowMoVideoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = R52DFB482J;
 				INFOPLIST_FILE = SlowMoVideoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Test.SlowMoVideoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -274,9 +377,12 @@
 		};
 		E840A7191E257BE100701B3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB00192F0C08EA0A9AD28A0F /* Pods-SlowMoVideoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = R52DFB482J;
 				INFOPLIST_FILE = SlowMoVideoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Test.SlowMoVideoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -303,6 +409,7 @@
 				E840A7191E257BE100701B3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
