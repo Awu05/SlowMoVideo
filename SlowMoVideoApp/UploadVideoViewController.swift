@@ -149,6 +149,7 @@ class UploadVideoViewController: UICollectionViewController, UIGestureRecognizer
             //print("PATH: \(path)")
         }
         
+        
     }
     
     func reloadImages() {
