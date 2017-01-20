@@ -14,7 +14,7 @@ import MobileCoreServices
 
 
 //Upload file from Library to Firebase
-class UploadVideoViewController: UICollectionViewController {
+class UploadVideoViewController: UICollectionViewController, UIGestureRecognizerDelegate {
     
     
     //var imagePicker = UIImagePickerController()
@@ -22,6 +22,10 @@ class UploadVideoViewController: UICollectionViewController {
     var imagesDirectoryPath:String!
     var image = UIImage ()
     var mySharedData = DataAccessObject.sharedManager
+    
+    var path: String = ""
+    
+    var thumbnailImg = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +51,13 @@ class UploadVideoViewController: UICollectionViewController {
             }
         }
         
+        // Longpress Cell to Delete
+        let longPressGesture = UILongPressGestureRecognizer()
+        longPressGesture.minimumPressDuration = 0.5
+        
+        longPressGesture.addTarget(self, action: #selector(self.handleLongPress(_:)))
+        collectionView?.addGestureRecognizer(longPressGesture)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,22 +71,70 @@ class UploadVideoViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state != UIGestureRecognizerState.ended {
+            return
+        }
+        
+        let p = gesture.location(in: self.collectionView)
+        let indexPath = self.collectionView?.indexPathForItem(at: p)
+        
+        if let index = indexPath {
+            //print(index.row)
+            let tempPhotoURL = self.mySharedData.photos[index.row].imgURL
+            deleteFile(fileURL: tempPhotoURL)
+            self.mySharedData.photos.remove(at: index.row)
+            collectionView?.deleteItems(at: [index])
+            
+        } else {
+            print("Could not find index path")
+        }
+    }
+    
+    func deleteFile(fileURL: String) {
+        
+        do {
+            let fileManager = FileManager.default
+            
+            // Check if file exists
+            if fileManager.fileExists(atPath: fileURL) {
+                // Delete file
+                try fileManager.removeItem(atPath: fileURL)
+                //print("Deleting Photo")
+            } else {
+                print("File does not exist")
+            }
+            
+        }
+        catch let error as NSError {
+            print("An error took place: \(error)")
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let photo = mySharedData.photos[(indexPath as IndexPath).row]
         
         if FileManager.default.fileExists(atPath: photo.imgURL) {
             let url = URL(string: photo.imgURL)
-            //let data = NSData(contentsOf: url!)
-            let img = UIImage(contentsOfFile: (url?.path)!)
-            let newImage = UIImage(cgImage: (img?.cgImage)!, scale: 1.0, orientation: UIImageOrientation.right)
-            self.image = newImage
+            
+            if url?.pathExtension == "mp4" {
+                //print("This an mp4 file!\n")
+                //playVideo(path: photo.imgURL)
+                self.path = photo.imgURL
+                
+                self.performSegue(withIdentifier: "PlayVideo", sender: self)
+            }
+            else {
+                let img = UIImage(contentsOfFile: (url?.path)!)
+                let newImage = UIImage(cgImage: (img?.cgImage)!, scale: 1.0, orientation: UIImageOrientation.right)
+                self.image = newImage
+                
+                self.performSegue(withIdentifier: "showDetail", sender: self)
+            }
+            
         }
-        
-        print("Image tapped!")
-        
-        self.performSegue(withIdentifier: "showDetail", sender: self)
-        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -83,113 +142,46 @@ class UploadVideoViewController: UICollectionViewController {
             let detailVC = segue.destination as! DetailViewController
             detailVC.img = self.image
         }
+        
+        if segue.identifier == "PlayVideo" {
+            let videoVC = segue.destination as! VideoPlayerViewController
+            videoVC.filePath = self.path
+            //print("PATH: \(path)")
+        }
+        
     }
     
     func reloadImages() {
-        // Get the document directory url
+        // Get the SlowMo directory url
         let imagesDirectoryUrl =  NSURL(string: imagesDirectoryPath)
         
         do {
             // Get the directory contents urls (including subfolders urls)
             let directoryContents = try FileManager.default.contentsOfDirectory(at: imagesDirectoryUrl as! URL, includingPropertiesForKeys: nil, options: [])
-            print(directoryContents)
+            //print(directoryContents)
             
-            for pic: URL in directoryContents {
+            for file: URL in directoryContents {
                 //let mp3Files = directoryContents.filter{ $0.pathExtension == "jpg" }
                 
-                print("File Path: \(pic)\n")
+                //print("File Path: \(pic)\n")
                 
-                let mp3FileNames = pic.deletingPathExtension().lastPathComponent
+                let picFileNames = file.deletingPathExtension().lastPathComponent
                 
-                print("File Name: \(mp3FileNames)")
+                //print("File Name: \(picFileNames)")
                 
-                let newPhoto = Photo(url: pic.path, uuid: mp3FileNames)
-                
+                let newPhoto = Photo(url: file.path, uuid: picFileNames)
                 self.mySharedData.photos.append(newPhoto)
+                
             }
             
-            print("Number of photos in slowmo directory is: \(mySharedData.photos.count)")
+            //print("Number of photos in slowmo directory is: \(mySharedData.photos.count)")
             
         } catch let error as NSError {
             print(error.localizedDescription)
         }
     }
     
-    /*
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        // Save image to Document directory
-        var imagePath = NSDate().description
-        imagePath = imagePath.replacingOccurrences(of: " ", with: "")
-        imagePath = imagesDirectoryPath.appending("/\(imagePath).png")
-        let data = UIImagePNGRepresentation(image)
-        let success = FileManager.default.createFile(atPath: imagePath, contents: data, attributes: nil)
-        dismiss(animated: true) { () -> Void in
-            print("It worked! You have chosen the image: \(imagePath)")
-            self.refreshTable()
-        }
-    }
     
-    func refreshTable(){
-        do{
-            images.removeAll()
-            titles = try FileManager.default.contentsOfDirectory(atPath: imagesDirectoryPath)
-            for image in titles{
-                let data = FileManager.default.contents(atPath: imagesDirectoryPath.appending("/\(image)"))
-                let image = UIImage(data: data!)
-                images.append(image!)
-            }
-            self.collectionView.reloadData()
-        }catch{
-            print("Error")
-        }
-    }
-    
-    */
-    /*
-    func startMediaBrowserFromViewController(viewController: UIViewController, usingDelegate delegate: UINavigationControllerDelegate & UIImagePickerControllerDelegate) -> Bool {
-        // 1
-        
-        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
-        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
-        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
-        if let dirPath          = paths.first
-        {
-            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent(".jpeg")
-            let image    = UIImage(contentsOfFile: imageURL.path)
-            // Do whatever you want with the image
-            
-            
-            
-        }
-        
-        
-        return true
-    }
- 
-    
-    private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        // 1
-        let mediaType = info[UIImagePickerControllerMediaType] as! NSString
-        
-        // 2
-        dismiss(animated: true) {
-            // 3
-            if mediaType == kUTTypeMovie {
-                let url = NSURL.fileURL(withPath: mediaType as String)
-                let player = AVPlayer(url: url)
-                let playerViewController = AVPlayerViewController()
-                playerViewController.player = player
-                
-                //playerViewController.view.frame = CGRectMake(20, 50, 300, 300)
-                self.view.addSubview(playerViewController.view)
-                self.addChildViewController(playerViewController)
-                
-                player.play()
-            }
-        }
-    }
-    */
  }
 
 // MARK: - Private
@@ -225,15 +217,73 @@ extension UploadVideoViewController {
         //print("Photo URL: \(photo.imgURL)")
         //print("Photo UUID: \(photo.uuid)")
         
+        
         if FileManager.default.fileExists(atPath: photo.imgURL) {
             let url = URL(string: photo.imgURL)
             //let data = NSData(contentsOf: url!)
-            let img = UIImage(contentsOfFile: (url?.path)!)
-            let newImage = UIImage(cgImage: (img?.cgImage)!, scale: 1.0, orientation: UIImageOrientation.right)
-            cell.imageView.image = newImage
+            if url?.pathExtension == "mp4" {
+                //print("This an mp4 file!\n")
+                createThumbnail(vidPath: url!)
+                cell.imageView.image = self.thumbnailImg
+                cell.playButton.isHidden = false;
+            }
+            else {
+                let img = UIImage(contentsOfFile: (url?.path)!)
+                let newImage = UIImage(cgImage: (img?.cgImage)!, scale: 1.0, orientation: UIImageOrientation.right)
+                cell.imageView.image = newImage
+                cell.playButton.isHidden = true;
+            }
+            
         }
         
         return cell
+    }
+    
+    func createThumbnail(vidPath: URL) {
+        
+        let url = URL (fileURLWithPath: vidPath.absoluteString)
+        //var err : NSError? = nil
+        let asset =  AVAsset(url: url)
+        let assetImageGenerator = AVAssetImageGenerator(asset: asset)
+        assetImageGenerator.appliesPreferredTrackTransform = true
+        
+        var time = asset.duration
+        time.value = min(time.value, 2)
+        
+        do {
+            let imageRef = try assetImageGenerator.copyCGImage(at: kCMTimeZero, actualTime: nil)
+            self.thumbnailImg = UIImage(cgImage: imageRef)
+        } catch let error {
+            print("*** Error generating thumbnail: \(error.localizedDescription)")
+        }
+    }
+    
+    func playVideo(path: String) {
+        /*
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        let playerController = AVPlayerViewController()
+        player.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed
+        
+        
+        playerController.player = player
+        present(playerController, animated: true) {
+            
+            player.play()
+            player.rate = 0.1
+        }
+ 
+        let vpVC = VideoPlayerViewController()
+        vpVC.filePath = path
+        self.navigationController?.pushViewController(vpVC, animated: true)
+        */
+        
+        var mainView: UIStoryboard!
+        mainView = UIStoryboard(name: "Main", bundle: nil)
+        let viewcontroller : VideoPlayerViewController = mainView.instantiateViewController(withIdentifier: "videoPlayer") as! VideoPlayerViewController
+        
+        viewcontroller.filePath = path
+        
+        self.present(viewcontroller, animated: true, completion: nil)
     }
 }
 

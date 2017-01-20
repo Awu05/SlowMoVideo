@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -118,36 +120,80 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3n-1I-T08">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enW-Ct-Ota">
+                                        <rect key="frame" x="0.0" y="543" width="188" height="55"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Photo"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="photoBtn:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="UV5-UA-HfI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fM9-GO-rCe">
+                                        <rect key="frame" x="187" y="543" width="188" height="55"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="f4y-8p-qAw"/>
+                                        </constraints>
+                                        <state key="normal" title="Video"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="videoBtn:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="zcQ-9i-5lh"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ghf-cL-2hq">
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gO4-zy-E9c">
+                                        <rect key="frame" x="152" y="464" width="71" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="71" id="pvU-8e-zEL"/>
+                                            <constraint firstAttribute="width" constant="71" id="uJb-Lh-x10"/>
+                                        </constraints>
+                                        <state key="normal" image="record-icon"/>
+                                        <connections>
+                                            <action selector="didTakePhoto:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="8V9-Oh-bNu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="enW-Ct-Ota" firstAttribute="leading" secondItem="V3n-1I-T08" secondAttribute="leading" id="88m-Kz-5BF"/>
+                                    <constraint firstItem="fM9-GO-rCe" firstAttribute="width" secondItem="enW-Ct-Ota" secondAttribute="width" id="KDx-4U-fSq"/>
+                                    <constraint firstAttribute="bottom" secondItem="enW-Ct-Ota" secondAttribute="bottom" id="NYv-ll-lA0"/>
+                                    <constraint firstItem="fM9-GO-rCe" firstAttribute="top" secondItem="gO4-zy-E9c" secondAttribute="bottom" constant="8" id="Tc5-m1-Cww"/>
+                                    <constraint firstItem="fM9-GO-rCe" firstAttribute="width" secondItem="V3n-1I-T08" secondAttribute="height" multiplier="188:598" id="ftM-0j-MeD"/>
+                                    <constraint firstItem="enW-Ct-Ota" firstAttribute="height" secondItem="fM9-GO-rCe" secondAttribute="height" id="gpB-nW-T49"/>
+                                    <constraint firstItem="gO4-zy-E9c" firstAttribute="centerX" secondItem="V3n-1I-T08" secondAttribute="centerX" id="sOX-tj-EtN"/>
+                                    <constraint firstAttribute="bottom" secondItem="fM9-GO-rCe" secondAttribute="bottom" id="uYY-AJ-5ce"/>
+                                    <constraint firstAttribute="trailing" secondItem="fM9-GO-rCe" secondAttribute="trailing" id="umR-77-35Y"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gO4-zy-E9c">
-                                <rect key="frame" x="152" y="542" width="71" height="71"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="71" id="9XQ-8m-AlW"/>
-                                    <constraint firstAttribute="height" constant="71" id="O9j-eq-G3e"/>
-                                </constraints>
-                                <state key="normal" image="record-icon"/>
-                                <connections>
-                                    <action selector="didTakePhoto:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="8V9-Oh-bNu"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3s6-ZM-7eu">
-                                <rect key="frame" x="67" y="404" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="27u-l1-uRR"/>
-                                    <constraint firstAttribute="width" constant="240" id="ugg-oY-jUN"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gO4-zy-E9c" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="Ox8-2A-GHa"/>
                             <constraint firstItem="V3n-1I-T08" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="Q58-fO-Ckp"/>
                             <constraint firstItem="V3n-1I-T08" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="XAJ-kM-334"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="gO4-zy-E9c" secondAttribute="bottom" constant="5" id="ffi-94-rnD"/>
-                            <constraint firstItem="3s6-ZM-7eu" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="jh4-9X-p18"/>
                             <constraint firstAttribute="trailing" secondItem="V3n-1I-T08" secondAttribute="trailing" id="nTY-vQ-evK"/>
-                            <constraint firstItem="gO4-zy-E9c" firstAttribute="top" secondItem="3s6-ZM-7eu" secondAttribute="bottom" constant="10" id="nrG-zb-dga"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="V3n-1I-T08" secondAttribute="bottom" id="sPn-ZQ-vkp"/>
                         </constraints>
                     </view>
@@ -155,8 +201,11 @@
                         <inset key="imageInsets" minX="-4" minY="2" maxX="-4" maxY="-14"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="captureImageView" destination="3s6-ZM-7eu" id="uKG-li-htg"/>
+                        <outlet property="photoProperty" destination="enW-Ct-Ota" id="277-Tb-W2U"/>
                         <outlet property="previewView" destination="V3n-1I-T08" id="nf2-h7-BEd"/>
+                        <outlet property="recordLength" destination="ghf-cL-2hq" id="keX-z2-ggg"/>
+                        <outlet property="recordProperty" destination="gO4-zy-E9c" id="IQq-n2-9jc"/>
+                        <outlet property="videoProperty" destination="fM9-GO-rCe" id="i9C-Lr-YyS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -250,6 +299,10 @@
                                         <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o0b-PD-S7p">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play-button" translatesAutoresizingMaskIntoConstraints="NO" id="UCv-sR-7TR">
+                                            <rect key="frame" x="36" y="34" width="24" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                                 <constraints>
@@ -260,6 +313,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="o0b-PD-S7p" id="Ttw-7q-slv"/>
+                                    <outlet property="playButton" destination="UCv-sR-7TR" id="74X-yu-cqU"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -272,17 +326,54 @@
                     <connections>
                         <outlet property="collectionView" destination="EkO-A2-eL5" id="a3e-Pc-QOb"/>
                         <segue destination="mUg-Te-o5r" kind="show" identifier="showDetail" id="2Rs-ye-diV"/>
+                        <segue destination="WQR-TS-wYw" kind="show" identifier="PlayVideo" id="QYq-FD-1bi"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgQ-q0-PDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="869.60000000000002" y="1073.6131934032985"/>
         </scene>
+        <!--Video Player View Controller-->
+        <scene sceneID="Pnb-Xb-68n">
+            <objects>
+                <viewController storyboardIdentifier="videoPlayer" id="WQR-TS-wYw" customClass="VideoPlayerViewController" customModule="SlowMoVideoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EnN-Ye-AoK"/>
+                        <viewControllerLayoutGuide type="bottom" id="h9m-lm-eFf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wax-fh-W3P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="8BG-le-kdJ">
+                                <rect key="frame" x="14" y="535" width="347" height="31"/>
+                                <connections>
+                                    <action selector="slowmoSlider:" destination="WQR-TS-wYw" eventType="valueChanged" id="7Sk-t6-VEr"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="8BG-le-kdJ" firstAttribute="trailing" secondItem="wax-fh-W3P" secondAttribute="trailingMargin" id="Kw9-W0-kbS"/>
+                            <constraint firstItem="8BG-le-kdJ" firstAttribute="centerX" secondItem="wax-fh-W3P" secondAttribute="centerX" id="Rsm-d5-y89"/>
+                            <constraint firstItem="8BG-le-kdJ" firstAttribute="leading" secondItem="wax-fh-W3P" secondAttribute="leadingMargin" id="r0q-V1-g2h"/>
+                            <constraint firstItem="h9m-lm-eFf" firstAttribute="top" secondItem="8BG-le-kdJ" secondAttribute="bottom" constant="53" id="upd-hz-YDS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="slowmoSliderProp" destination="8BG-le-kdJ" id="RpP-TA-pU3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ks6-2d-IXk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="870" y="1882"/>
+        </scene>
     </scenes>
     <resources>
         <image name=" active" width="32" height="32"/>
         <image name=" active (2)" width="32" height="32"/>
         <image name="Upload" width="32" height="32"/>
-        <image name="record-icon" width="280" height="280"/>
+        <image name="play-button" width="237" height="236"/>
+        <image name="record-icon" width="256" height="256"/>
     </resources>
 </document>

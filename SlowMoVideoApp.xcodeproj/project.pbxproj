@@ -20,6 +20,7 @@
 		E840A7231E26E2C500701B3D /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7221E26E2C500701B3D /* Photo.swift */; };
 		E840A7251E28293700701B3D /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7241E28293700701B3D /* PhotoCollectionViewCell.swift */; };
 		E840A7271E2844C900701B3D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840A7261E2844C900701B3D /* DetailViewController.swift */; };
+		E8450FE51E3005AA00A82276 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8450FE41E3005AA00A82276 /* VideoPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		E840A7221E26E2C500701B3D /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		E840A7241E28293700701B3D /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E840A7261E2844C900701B3D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E8450FE41E3005AA00A82276 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		FB00192F0C08EA0A9AD28A0F /* Pods-SlowMoVideoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlowMoVideoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlowMoVideoApp/Pods-SlowMoVideoApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 				E840A7201E26E08200701B3D /* DataAccessObject.swift */,
 				E840A7221E26E2C500701B3D /* Photo.swift */,
 				E840A70C1E257BE100701B3D /* Main.storyboard */,
+				E8450FE41E3005AA00A82276 /* VideoPlayerViewController.swift */,
 				E840A7241E28293700701B3D /* PhotoCollectionViewCell.swift */,
 				E840A70F1E257BE100701B3D /* Assets.xcassets */,
 				E840A7111E257BE100701B3D /* LaunchScreen.storyboard */,
@@ -237,6 +240,7 @@
 				E840A7231E26E2C500701B3D /* Photo.swift in Sources */,
 				E840A70B1E257BE100701B3D /* SecondViewController.swift in Sources */,
 				E840A71B1E2580A400701B3D /* UploadVideoViewController.swift in Sources */,
+				E8450FE51E3005AA00A82276 /* VideoPlayerViewController.swift in Sources */,
 				E840A7071E257BE100701B3D /* AppDelegate.swift in Sources */,
 				E840A7251E28293700701B3D /* PhotoCollectionViewCell.swift in Sources */,
 				E840A7091E257BE100701B3D /* FirstViewController.swift in Sources */,
