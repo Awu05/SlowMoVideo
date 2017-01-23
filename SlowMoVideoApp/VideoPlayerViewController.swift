@@ -18,7 +18,6 @@ class VideoPlayerViewController: UIViewController {
     @IBOutlet weak var slowmoSliderProp: UISlider!
     
     @IBAction func slowmoSlider(_ sender: Any) {
-        //self.avPlayer.play()
         avPlayer.rate = self.slowmoSliderProp.value
     }
     
@@ -46,7 +45,6 @@ class VideoPlayerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         avPlayer.play() // Start the playback
-        //self.view.bringSubview(toFront: slowmoSliderProp)
     }
     
     override func viewWillLayoutSubviews() {
@@ -56,10 +54,5 @@ class VideoPlayerViewController: UIViewController {
         avPlayerLayer.frame = view.bounds
         self.view.bringSubview(toFront: slowmoSliderProp)
     }
-    /*
-    // Force the view into landscape mode (which is how most video media is consumed.)
-    func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.landscape
-    }
-    */
+
 }

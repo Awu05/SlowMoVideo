@@ -14,11 +14,7 @@ import AVFoundation
 @available(iOS 10.0, *)
 class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelegate  {
     
-    @IBOutlet weak var videoProperty: UIButton!
-    
     @IBOutlet weak var recordProperty: UIButton!
-    
-    @IBOutlet weak var photoProperty: UIButton!
     
     @IBOutlet weak var previewView: UIView!
     
@@ -38,99 +34,64 @@ class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     var stopVideo: AVCaptureFileOutput?
     
-    let videoFileOutput = AVCaptureMovieFileOutput()
-    
     var captureDevice : AVCaptureDevice? // check capture device availability
     let captureSession = AVCaptureSession() // to create capture session
     var previewLayer : AVCaptureVideoPreviewLayer? // to add video inside container
-    
-    //var captureDevice : AVCaptureDevice?
     var captureAudio :AVCaptureDevice?
     
-    @IBAction func photoBtn(_ sender: Any) {
-        takePhoto()
-        self.photoProperty.isEnabled = false
-        self.videoProperty.isEnabled = true
-        self.videoProperty.backgroundColor = .white
-        self.photoProperty.backgroundColor = .red
-    }
+    let videoFileOutput = AVCaptureMovieFileOutput()
     
+    @IBOutlet weak var fileCapProp: UISegmentedControl!
     
-    @IBAction func videoBtn(_ sender: Any) {
-        self.recordLength.isHidden = false
+    @IBAction func FileCapture(_ sender: Any) {
         
-        self.photoProperty.isEnabled = true
-        self.videoProperty.isEnabled = false
-        self.videoProperty.backgroundColor = .red
-        self.photoProperty.backgroundColor = .white
+        previewLayer?.removeFromSuperlayer()
+        videoPreviewLayer .removeFromSuperlayer()
         
-        self.recordLength.text = String(timeElapsed)
-        captureSession.sessionPreset = AVCaptureSessionPresetHigh
-        let devices = AVCaptureDevice.devices()
-        
-        var captureDeviceVideoFound: Bool = false
-        var captureDeviceAudioFound:Bool = false
-        
-        // Loop through all the capture devices on this phone
-        for device in devices! {
-            // Make sure this particular device supports video
-            if ((device as AnyObject).hasMediaType(AVMediaTypeVideo)) {
-                // Finally check the position and confirm we've got the front camera
-                if((device as AnyObject).position == AVCaptureDevicePosition.back) {
-                    //print((device as AnyObject).activeFormat)
-                    captureDevice = device as? AVCaptureDevice //initialize video
-                    if captureDevice != nil {
-                        //print("Capture device found")
-                        captureDeviceVideoFound = true;
-                    }
-                }
-            }
-            if((device as AnyObject).hasMediaType(AVMediaTypeAudio)){
-                //print("Capture device audio init")
-                captureAudio = device as? AVCaptureDevice //initialize audio
-                captureDeviceAudioFound = true
-            }
+        switch (sender as AnyObject).selectedSegmentIndex
+        {
+        case 0:
+            takePhoto()
+        case 1:
+            recVideo()
+        default:
+            break;
         }
-        if(captureDeviceAudioFound && captureDeviceVideoFound){
-            if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
-                for input in inputs {
-                    captureSession.removeInput(input)
-                }
-            }
-            beginSession() 
-        }
-        
-        isRecording = true
-        
-    
     }
     
     func beginSession() {
-        configureDevice()
+        
+        
         let err : NSError? = nil
         do{
-            try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice))
-            try captureSession.addInput(AVCaptureDeviceInput(device: captureAudio))
+            if captureSession.inputs.isEmpty {
+                try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice))
+                try captureSession.addInput(AVCaptureDeviceInput(device: captureAudio))
+                
+            }
+            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            self.previewView.layer.addSublayer(previewLayer!)
+            self.previewView.bringSubview(toFront: fileCapProp)
+            self.previewView.bringSubview(toFront: recordProperty)
+            self.previewView.bringSubview(toFront: recordLength)
+            
+            previewLayer?.frame = self.view.layer.frame
+
+            
         }catch{
             print("error")
         }
         if err != nil {
             print("error: \(err?.localizedDescription)")
         }
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        self.previewView.layer.addSublayer(previewLayer!)
-        self.previewView.bringSubview(toFront: photoProperty)
-        self.previewView.bringSubview(toFront: videoProperty)
-        self.previewView.bringSubview(toFront: recordProperty)
-        self.previewView.bringSubview(toFront: recordLength)
         
-        previewLayer?.frame = self.view.layer.frame
         captureSession.startRunning()
+        
+        self.previewView.setNeedsDisplay()
     }
     
     func configureDevice() {
-        /*
-        if let device = captureDevice {
+           if let device = captureDevice {
             do{
                 try device.lockForConfiguration()
                 //print(device.activeFormat)
@@ -146,36 +107,6 @@ class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 print("error")
             }
         }
-        */
-        
-        if let device = captureDevice {
-            
-            // 1
-            for vFormat in captureDevice!.formats {
-                
-                // 2
-                var ranges = (vFormat as AnyObject).videoSupportedFrameRateRanges as! [AVFrameRateRange]
-                let frameRates = ranges[0]
-                
-                // 3
-                if frameRates.maxFrameRate == 60 {
-                    
-                    // 4
-                    do {
-                        try device.lockForConfiguration()
-                        device.activeFormat = vFormat as! AVCaptureDeviceFormat
-                        device.activeVideoMinFrameDuration = frameRates.minFrameDuration
-                        device.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
-                        print("Min Frame rate: \(device.activeVideoMinFrameDuration)\nMax Frame rate: \(device.activeVideoMaxFrameDuration)")
-                        device.unlockForConfiguration()
-                    }
-                    catch {
-                        print("error")
-                    }
-                    
-                }
-            }
-        }
         
         
     }
@@ -188,23 +119,57 @@ class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         print("capture output : finish recording to \(outputFileURL)")
         
-        
-        print("capture did finish")
 //        print(captureOutput);
 //        print(outputFileURL);
         
     }
     
+    func recVideo () {
+        
+        self.recordLength.isHidden = false
+        
+        self.recordLength.text = String(timeElapsed)
+        captureSession.sessionPreset = AVCaptureSessionPresetHigh
+        let devices = AVCaptureDevice.devices()
+        
+        // Loop through all the capture devices on this phone
+        for device in devices! {
+            // Make sure this particular device supports video
+            if ((device as AnyObject).hasMediaType(AVMediaTypeVideo)) {
+                // Finally check the position and confirm we've got the front camera
+                if((device as AnyObject).position == AVCaptureDevicePosition.back) {
+                    captureDevice = device as? AVCaptureDevice //initialize video
+
+                }
+            }
+            if((device as AnyObject).hasMediaType(AVMediaTypeAudio)){
+                captureAudio = device as? AVCaptureDevice //initialize audio
+            }
+        }
+        
+        beginSession()
+        
+        isRecording = true
+ 
+
+    }
     
     @IBAction func didTakePhoto(_ sender: Any) {
         
         if(recordCount != 0 && isRecording == true) {
-            recordCount = 0
+            
+            self.recordCount = 0
             
             self.timer.invalidate()
+            
+            self.timeElapsed = 0
+            
             self.recordLength.text = "0"
             
             self.stopVideo?.stopRecording()
+            
+            self.captureSession.removeOutput(self.videoFileOutput)
+            
             print("Stopped Recording")
             
             self.savedFile()
@@ -221,8 +186,8 @@ class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
             
-            let videoFileOutput = AVCaptureMovieFileOutput()
-            self.captureSession.addOutput(videoFileOutput)
+            //let videoFileOutput = AVCaptureMovieFileOutput()
+            self.captureSession.addOutput(self.videoFileOutput)
             
             videoFileOutput.startRecording(toOutputFileURL: fileURL as URL!, recordingDelegate: recordingDelegate)
             
@@ -277,8 +242,8 @@ class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func addTime(){
-        timeElapsed += 1
-        self.recordLength.text = String(timeElapsed)
+        self.timeElapsed += 1
+        self.recordLength.text = String(self.timeElapsed)
     }
     
     var session = AVCaptureSession()
@@ -308,6 +273,10 @@ class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
         }
         
+        takePhoto()
+        configureDevice()
+
+        //recVideo()
     }
     
     func takePhoto() {
@@ -318,6 +287,8 @@ class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         session.sessionPreset = AVCaptureSessionPresetHigh
         
         let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        
+        captureDevice = backCamera
         
         var error: NSError?
         var input: AVCaptureDeviceInput!
@@ -338,8 +309,7 @@ class SecondViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             videoPreviewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
             videoPreviewLayer.frame = self.view.bounds;
             self.previewView.layer.addSublayer(videoPreviewLayer)
-            self.previewView.bringSubview(toFront: photoProperty)
-            self.previewView.bringSubview(toFront: videoProperty)
+            self.previewView.bringSubview(toFront: fileCapProp)
             self.previewView.bringSubview(toFront: recordProperty)
             
             session.startRunning()

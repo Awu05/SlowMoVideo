@@ -59,8 +59,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
-        //sender.view?.removeFromSuperview()
-        //navigationController?.popViewController(animated: true)
         
         dismiss(animated: true, completion: nil)
     }

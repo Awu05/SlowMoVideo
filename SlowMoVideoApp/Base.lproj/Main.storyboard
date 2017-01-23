@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,41 +120,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3n-1I-T08">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enW-Ct-Ota">
-                                        <rect key="frame" x="0.0" y="543" width="188" height="55"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Photo"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="photoBtn:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="UV5-UA-HfI"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fM9-GO-rCe">
-                                        <rect key="frame" x="187" y="543" width="188" height="55"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="55" id="f4y-8p-qAw"/>
-                                        </constraints>
-                                        <state key="normal" title="Video"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="videoBtn:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="zcQ-9i-5lh"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ghf-cL-2hq">
                                         <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -163,11 +127,21 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JPq-Ux-nbn">
+                                        <rect key="frame" x="0.0" y="570" width="375" height="29"/>
+                                        <segments>
+                                            <segment title="Photo"/>
+                                            <segment title="Video"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="FileCapture:" destination="8rJ-Kc-sve" eventType="valueChanged" id="Gyz-WV-sU2"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gO4-zy-E9c">
-                                        <rect key="frame" x="152" y="464" width="71" height="71"/>
+                                        <rect key="frame" x="152" y="491" width="71" height="71"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="71" id="pvU-8e-zEL"/>
-                                            <constraint firstAttribute="width" constant="71" id="uJb-Lh-x10"/>
+                                            <constraint firstAttribute="height" constant="71" id="Eeb-7w-Fbt"/>
+                                            <constraint firstAttribute="width" constant="71" id="IBD-yt-yTL"/>
                                         </constraints>
                                         <state key="normal" image="record-icon"/>
                                         <connections>
@@ -177,15 +151,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="enW-Ct-Ota" firstAttribute="leading" secondItem="V3n-1I-T08" secondAttribute="leading" id="88m-Kz-5BF"/>
-                                    <constraint firstItem="fM9-GO-rCe" firstAttribute="width" secondItem="enW-Ct-Ota" secondAttribute="width" id="KDx-4U-fSq"/>
-                                    <constraint firstAttribute="bottom" secondItem="enW-Ct-Ota" secondAttribute="bottom" id="NYv-ll-lA0"/>
-                                    <constraint firstItem="fM9-GO-rCe" firstAttribute="top" secondItem="gO4-zy-E9c" secondAttribute="bottom" constant="8" id="Tc5-m1-Cww"/>
-                                    <constraint firstItem="fM9-GO-rCe" firstAttribute="width" secondItem="V3n-1I-T08" secondAttribute="height" multiplier="188:598" id="ftM-0j-MeD"/>
-                                    <constraint firstItem="enW-Ct-Ota" firstAttribute="height" secondItem="fM9-GO-rCe" secondAttribute="height" id="gpB-nW-T49"/>
-                                    <constraint firstItem="gO4-zy-E9c" firstAttribute="centerX" secondItem="V3n-1I-T08" secondAttribute="centerX" id="sOX-tj-EtN"/>
-                                    <constraint firstAttribute="bottom" secondItem="fM9-GO-rCe" secondAttribute="bottom" id="uYY-AJ-5ce"/>
-                                    <constraint firstAttribute="trailing" secondItem="fM9-GO-rCe" secondAttribute="trailing" id="umR-77-35Y"/>
+                                    <constraint firstItem="JPq-Ux-nbn" firstAttribute="centerX" secondItem="V3n-1I-T08" secondAttribute="centerX" id="EYE-qN-g73"/>
+                                    <constraint firstAttribute="bottom" secondItem="JPq-Ux-nbn" secondAttribute="bottom" id="hDi-8J-f2s"/>
+                                    <constraint firstAttribute="trailing" secondItem="JPq-Ux-nbn" secondAttribute="trailing" id="i76-sb-lah"/>
+                                    <constraint firstItem="JPq-Ux-nbn" firstAttribute="leading" secondItem="V3n-1I-T08" secondAttribute="leading" id="jUs-pP-IcV"/>
+                                    <constraint firstItem="gO4-zy-E9c" firstAttribute="centerX" secondItem="V3n-1I-T08" secondAttribute="centerX" id="tJe-e6-2RQ"/>
+                                    <constraint firstItem="JPq-Ux-nbn" firstAttribute="top" secondItem="gO4-zy-E9c" secondAttribute="bottom" constant="8" id="vEf-AN-Mgg"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -201,11 +172,10 @@
                         <inset key="imageInsets" minX="-4" minY="2" maxX="-4" maxY="-14"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="photoProperty" destination="enW-Ct-Ota" id="277-Tb-W2U"/>
+                        <outlet property="fileCapProp" destination="JPq-Ux-nbn" id="6Dk-iP-0gx"/>
                         <outlet property="previewView" destination="V3n-1I-T08" id="nf2-h7-BEd"/>
                         <outlet property="recordLength" destination="ghf-cL-2hq" id="keX-z2-ggg"/>
                         <outlet property="recordProperty" destination="gO4-zy-E9c" id="IQq-n2-9jc"/>
-                        <outlet property="videoProperty" destination="fM9-GO-rCe" id="i9C-Lr-YyS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -223,9 +193,9 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Sxu-p6-acK" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="nTv-qz-gqH" kind="relationship" relationship="viewControllers" id="qF3-YG-Tye"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="Sxu-p6-acK" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -236,7 +206,7 @@
         <scene sceneID="9XA-YV-A4g">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sxu-p6-acK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image=" active" id="acW-dT-cKf">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" image=" active" id="acW-dT-cKf">
                         <inset key="imageInsets" minX="-4" minY="7" maxX="-3" maxY="-11"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -274,7 +244,7 @@
             </objects>
             <point key="canvasLocation" x="-23.199999999999999" y="1073.6131934032985"/>
         </scene>
-        <!--Upload Video View Controller-->
+        <!--Moments-->
         <scene sceneID="Oo1-lS-3rr">
             <objects>
                 <collectionViewController id="gtA-FS-7RE" customClass="UploadVideoViewController" customModule="SlowMoVideoApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -322,7 +292,7 @@
                             <outlet property="delegate" destination="gtA-FS-7RE" id="6Ga-GK-DQe"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="8fe-pR-eed"/>
+                    <navigationItem key="navigationItem" title="Moments" id="8fe-pR-eed"/>
                     <connections>
                         <outlet property="collectionView" destination="EkO-A2-eL5" id="a3e-Pc-QOb"/>
                         <segue destination="mUg-Te-o5r" kind="show" identifier="showDetail" id="2Rs-ye-diV"/>

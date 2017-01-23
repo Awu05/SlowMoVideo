@@ -16,9 +16,6 @@ import MobileCoreServices
 //Upload file from Library to Firebase
 class UploadVideoViewController: UICollectionViewController, UIGestureRecognizerDelegate {
     
-    
-    //var imagePicker = UIImagePickerController()
-    
     var imagesDirectoryPath:String!
     var image = UIImage ()
     var mySharedData = DataAccessObject.sharedManager
@@ -80,7 +77,6 @@ class UploadVideoViewController: UICollectionViewController, UIGestureRecognizer
         let indexPath = self.collectionView?.indexPathForItem(at: p)
         
         if let index = indexPath {
-            //print(index.row)
             let tempPhotoURL = self.mySharedData.photos[index.row].imgURL
             deleteFile(fileURL: tempPhotoURL)
             self.mySharedData.photos.remove(at: index.row)
@@ -120,7 +116,6 @@ class UploadVideoViewController: UICollectionViewController, UIGestureRecognizer
             
             if url?.pathExtension == "mp4" {
                 //print("This an mp4 file!\n")
-                //playVideo(path: photo.imgURL)
                 self.path = photo.imgURL
                 
                 self.performSegue(withIdentifier: "PlayVideo", sender: self)
@@ -162,8 +157,6 @@ class UploadVideoViewController: UICollectionViewController, UIGestureRecognizer
             //print(directoryContents)
             
             for file: URL in directoryContents {
-                //let mp3Files = directoryContents.filter{ $0.pathExtension == "jpg" }
-                
                 //print("File Path: \(pic)\n")
                 
                 let picFileNames = file.deletingPathExtension().lastPathComponent
@@ -221,9 +214,7 @@ extension UploadVideoViewController {
         
         if FileManager.default.fileExists(atPath: photo.imgURL) {
             let url = URL(string: photo.imgURL)
-            //let data = NSData(contentsOf: url!)
             if url?.pathExtension == "mp4" {
-                //print("This an mp4 file!\n")
                 createThumbnail(vidPath: url!)
                 cell.imageView.image = self.thumbnailImg
                 cell.playButton.isHidden = false;
@@ -243,7 +234,6 @@ extension UploadVideoViewController {
     func createThumbnail(vidPath: URL) {
         
         let url = URL (fileURLWithPath: vidPath.absoluteString)
-        //var err : NSError? = nil
         let asset =  AVAsset(url: url)
         let assetImageGenerator = AVAssetImageGenerator(asset: asset)
         assetImageGenerator.appliesPreferredTrackTransform = true
@@ -259,25 +249,9 @@ extension UploadVideoViewController {
         }
     }
     
+    //Function not used. Just Another way to call another VC through storyboard
+    /*
     func playVideo(path: String) {
-        /*
-        let player = AVPlayer(url: URL(fileURLWithPath: path))
-        let playerController = AVPlayerViewController()
-        player.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed
-        
-        
-        playerController.player = player
-        present(playerController, animated: true) {
-            
-            player.play()
-            player.rate = 0.1
-        }
- 
-        let vpVC = VideoPlayerViewController()
-        vpVC.filePath = path
-        self.navigationController?.pushViewController(vpVC, animated: true)
-        */
-        
         var mainView: UIStoryboard!
         mainView = UIStoryboard(name: "Main", bundle: nil)
         let viewcontroller : VideoPlayerViewController = mainView.instantiateViewController(withIdentifier: "videoPlayer") as! VideoPlayerViewController
@@ -286,5 +260,6 @@ extension UploadVideoViewController {
         
         self.present(viewcontroller, animated: true, completion: nil)
     }
+    */
 }
 
